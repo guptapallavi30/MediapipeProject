@@ -45,14 +45,15 @@ class poseDetector():
 
 
 def main():
-    cap = cv2.VideoCapture('./PoseVideos/5.mp4')
+    # cap = cv2.VideoCapture('./PoseVideos/5.mp4')
+    cap = cv2.VideoCapture(0)
     pTime = 0
     detector = poseDetector();
     while True:
         success, img = cap.read() # returns true if image is read (false ow), and the array of images (empty ow)
         img = detector.findPose(img)
         lmList = detector.findPosition(img, draw=False)
-        print(lmList[14])
+        # print(lmList[14])
         if not success:
             break
 
@@ -63,6 +64,11 @@ def main():
         cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3) # add text to show on top of image
         cv2.imshow("Image",img)
         cv2.waitKey(1) # wait 1 ms
+
+    # After the loop release the cap object
+    cap.release()
+    # Destroy all the windows
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
