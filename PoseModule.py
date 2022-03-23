@@ -48,7 +48,7 @@ def main():
     # cap = cv2.VideoCapture('./PoseVideos/5.mp4')
     cap = cv2.VideoCapture(0)
     pTime = 0
-    detector = poseDetector();
+    detector = poseDetector()
     while True:
         success, img = cap.read() # returns true if image is read (false ow), and the array of images (empty ow)
         img = detector.findPose(img)
